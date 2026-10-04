@@ -1,0 +1,23 @@
+<svg width="26" height="18" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g id="flag">
+    <g clip-path="url(#clip0_2227_1262)">
+      <path id="Vector" d="M1 1.00024H25V16.9999H1V1.00024Z" fill="#D80027"/>
+      <path id="Vector_2" d="M10.2175 1.00024V16.9999H1V1.00024H10.2175Z" fill="#6DA544"/>
+      <path id="Vector_3"
+            d="M10.2175 12C11.8744 12 13.2175 10.6569 13.2175 9C13.2175 7.34315 11.8744 6 10.2175 6C8.56068 6 7.21753 7.34315 7.21753 9C7.21753 10.6569 8.56068 12 10.2175 12Z"
+            fill="#FFDA44"/>
+      <path id="Vector_4"
+            d="M8.52979 7.5V9.37505C8.52979 10.307 9.28532 11.0626 10.2173 11.0626C11.1493 11.0626 11.9048 10.307 11.9048 9.37505V7.5H8.52979Z"
+            fill="#D80027"/>
+      <path id="Vector_5"
+            d="M10.2173 9.9375C9.90711 9.9375 9.65479 9.68517 9.65479 9.375V8.625H10.7798V9.375C10.7798 9.68513 10.5274 9.9375 10.2173 9.9375Z"
+            fill="white"/>
+    </g>
+    <rect x="0.5" y="0.5" width="25" height="17" stroke="white" stroke-opacity="0.19"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_2227_1262">
+      <rect x="1" y="1" width="24" height="16" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
