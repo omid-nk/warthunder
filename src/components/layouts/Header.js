@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GiHumanTarget } from "react-icons/gi";
 import { LuChevronDown, LuMenu, LuSearch, LuX } from "react-icons/lu";
 
@@ -10,6 +10,7 @@ export default function Header() {
   const [lang, setLang] = useState("en");
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const langs = [
     {
@@ -90,6 +91,20 @@ export default function Header() {
     { id: 6, name: "exports", slug: "exports" },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 80);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const currentLang = langs.find((item) => item.slug === lang);
 
   const handleLanguageChange = (slug) => {
@@ -103,9 +118,19 @@ export default function Header() {
   };
 
   return (
-    <section className="select-none">
+    <section
+      className={`absolute left-0 top-0 z-50 w-full ${
+        isScrolled ? "pointer-events-none" : ""
+      }`}
+    >
       {/* ================= TOP BAR ================= */}
-      <div className="bg-mist-950 text-mist-500 border-b border-mist-800/60">
+      <div
+        className={`bg-mist-950 text-mist-500 border-b border-mist-800/60 transition-all duration-300 ${
+          isScrolled
+            ? "pointer-events-none -translate-y-full opacity-0"
+            : "translate-y-0 opacity-100"
+        }`}
+      >
         <div className="mx-auto flex w-full max-w-360 items-stretch justify-between">
           {/* Left */}
           <nav className="flex items-center px-4 sm:px-5">
@@ -206,14 +231,26 @@ export default function Header() {
       </div>
 
       {/* ================= MAIN HEADER ================= */}
-      <header className="relative border-b border-mist-800 bg-mist-950/30">
-        <div className="mx-auto flex min-h-20 w-full max-w-360 items-center justify-between gap-8 px-4 sm:min-h-28 sm:px-6 lg:min-h-36 lg:px-8">
+      <header
+        className={`w-full border-b border-mist-800 transition-all duration-300 ${
+          isScrolled
+            ? "pointer-events-auto fixed left-0 top-0 bg-mist-950/95 shadow-2xl backdrop-blur-md"
+            : "relative bg-mist-950/30"
+        }`}
+      >
+        <div
+          className={`mx-auto flex w-full max-w-360 items-center justify-between gap-8 px-4 transition-all duration-300 sm:px-6 lg:px-8 ${
+            isScrolled ? "min-h-16" : "min-h-20 sm:min-h-28 lg:min-h-36"
+          }`}
+        >
           {/* Logo + Navigation */}
           <nav className="flex h-full min-w-0 items-center">
             {/* Logo */}
             <Link
               href="/"
-              className="mr-6 flex shrink-0 items-center sm:mr-10 lg:mr-14"
+              className={`flex shrink-0 items-center transition-all duration-300 ${
+                isScrolled ? "mr-6 sm:mr-8 lg:mr-10" : "mr-6 sm:mr-10 lg:mr-14"
+              }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <Image
@@ -222,7 +259,9 @@ export default function Header() {
                 width={180}
                 height={120}
                 priority
-                className="h-auto w-28 sm:w-36 lg:w-40"
+                className={`h-auto transition-all duration-300 ${
+                  isScrolled ? "w-24 sm:w-28 lg:w-32" : "w-28 sm:w-36 lg:w-40"
+                }`}
               />
             </Link>
 
@@ -232,7 +271,9 @@ export default function Header() {
                 <Link
                   key={item.slug}
                   href={`/${item.slug}`}
-                  className="flex h-full items-center px-3 text-[11px] uppercase tracking-[0.12em] text-mist-400 transition-colors hover:text-mist-100 xl:px-5 xl:text-xs"
+                  className={`flex h-full items-center text-[11px] uppercase tracking-[0.12em] text-mist-400 transition-all duration-300 hover:text-mist-100 ${
+                    isScrolled ? "px-2 xl:px-4" : "px-3 xl:px-5"
+                  } xl:text-xs`}
                 >
                   {item.name}
                 </Link>
@@ -246,7 +287,9 @@ export default function Header() {
             <button
               type="button"
               aria-label="Search"
-              className="flex size-9 items-center justify-center border border-mist-700 text-mist-400 transition-colors hover:bg-mist-800/60 hover:text-mist-100 sm:size-10"
+              className={`flex items-center justify-center border border-mist-700 text-mist-400 transition-all duration-300 hover:bg-mist-800/60 hover:text-mist-100 ${
+                isScrolled ? "size-9" : "size-9 sm:size-10"
+              }`}
             >
               <LuSearch className="size-4 sm:size-4.5" />
             </button>
@@ -254,7 +297,11 @@ export default function Header() {
             {/* Register */}
             <Link
               href="/register"
-              className="hidden border border-red-500 bg-red-700 px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-red-600 sm:block sm:px-5 sm:text-xs lg:px-7 lg:py-3"
+              className={`hidden border border-red-500 bg-red-700 font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:bg-red-600 sm:block ${
+                isScrolled
+                  ? "px-5 py-2 text-[10px]"
+                  : "px-5 py-2.5 text-[10px] lg:px-7 lg:py-3 lg:text-xs"
+              }`}
             >
               register now!
             </Link>
@@ -309,7 +356,7 @@ export default function Header() {
 
               {/* Mobile actions */}
               <div className="flex items-center gap-3 pt-4">
-                {/* Sign in - mobile only */}
+                {/* Sign in */}
                 <Link
                   href="/login"
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -319,7 +366,7 @@ export default function Header() {
                   <span>sign in</span>
                 </Link>
 
-                {/* Register - mobile only */}
+                {/* Register */}
                 <Link
                   href="/register"
                   onClick={() => setIsMobileMenuOpen(false)}
