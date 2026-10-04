@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${jakarta.variable} h-full antialiased select-none`}
     >
-      <body className="mx-auto py-300 bg-mist-900 text-mist-100">
+      <body className="mx-auto  bg-mist-900 text-mist-100">
         <Header />
         {children}
       </body>

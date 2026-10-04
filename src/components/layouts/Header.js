@@ -135,7 +135,7 @@ export default function Header() {
           type="button"
           aria-label="Close language menu"
           onClick={() => setIsLangOpen(false)}
-          className="fixed inset-0 z-[90] cursor-default bg-black/60 backdrop-blur-[1px]"
+          className="fixed inset-0 z-90 cursor-default bg-black/60 backdrop-blur-[1px]"
         />
       )}
 
@@ -143,7 +143,7 @@ export default function Header() {
           HEADER WRAPPER
           ========================================================= */}
 
-      <section className="absolute left-0 top-0 z-[100] w-full">
+      <section className="absolute left-0 top-0 z-100 w-full">
         {/* =======================================================
             TOP BAR
             ======================================================= */}
@@ -153,8 +153,8 @@ export default function Header() {
             isScrolled
               ? "pointer-events-none -translate-y-full opacity-0"
               : isLangOpen
-                ? "z-[120]"
-                : "z-[101]"
+                ? "z-120"
+                : "z-101"
           }`}
         >
           <div className="mx-auto flex w-full max-w-360 items-stretch justify-between">
@@ -197,13 +197,13 @@ export default function Header() {
               </Link>
 
               {/* Language */}
-              <div className="relative z-[130]">
+              <div className="relative z-130">
                 <button
                   type="button"
                   aria-expanded={isLangOpen}
                   aria-haspopup="listbox"
                   onClick={handleLanguageMenu}
-                  className={`relative z-[140] flex h-full cursor-pointer items-center gap-1.5 px-3 py-2.5 transition-colors sm:gap-2 sm:px-4 ${
+                  className={`relative z-140 flex h-full cursor-pointer items-center gap-1.5 px-3 py-2.5 transition-colors sm:gap-2 sm:px-4 ${
                     isLangOpen
                       ? "bg-mist-800 text-mist-100"
                       : "hover:bg-mist-700/40 hover:text-mist-200"
@@ -231,7 +231,7 @@ export default function Header() {
                 {isLangOpen && (
                   <div
                     role="listbox"
-                    className="absolute right-0 top-full z-[140] min-w-52 overflow-hidden border border-mist-700 bg-mist-800 shadow-2xl"
+                    className="absolute right-0 top-full z-140 min-w-52 overflow-hidden border border-mist-700 bg-mist-800 shadow-2xl"
                   >
                     {/* Dropdown header */}
                     <div className="border-b border-mist-700/80 px-5 py-2.5">
@@ -280,8 +280,8 @@ export default function Header() {
         <header
           className={`w-full border-b border-mist-800 transition-all duration-300 ${
             isScrolled
-              ? "fixed left-0 top-0 z-[100] bg-mist-950/95 shadow-2xl backdrop-blur-md"
-              : "relative z-[100] bg-mist-950/30"
+              ? "fixed left-0 top-0 z-100 bg-mist-950/85 shadow-2xl backdrop-blur-md"
+              : "relative z-100 bg-mist-950/50"
           }`}
         >
           <div
